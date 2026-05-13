@@ -1,3 +1,4 @@
 require "config.lazy"
-require "config.keymapping"
 require "config.opts"
+require "config.keymapping"
+require "config.autocmd"

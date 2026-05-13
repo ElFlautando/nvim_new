@@ -1,6 +1,6 @@
 vim.opt.number = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.backspace = { "indent", "start", "eol", }
 vim.opt.scrolloff = 8
@@ -20,3 +20,20 @@ vim.opt.relativenumber = true
 vim.opt.numberwidth = 2
 vim.opt.spelloptions = "noplainbuffer"
 vim.opt.signcolumn = "yes"
+
+vim.cmd("colorscheme tokyonight")
+
+vim.diagnostic.config({
+  virtual_text = false,
+  float = {
+    source = "always",
+    border = "rounded",
+    focusable = false,
+  },
+})
+
+local signs = { Error = " ", Warn = " ", Hint = "", Info = " ", }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "", })
+end
