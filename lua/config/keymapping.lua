@@ -40,6 +40,29 @@ function keymaps.hover()
     { "K",           function() require("hover").open() end,  desc = "Hover float", mode = "n", silent = true },
     { "<MouseMove>", function() require("hover").mouse() end, desc = "Hover mouse", mode = "n", silent = true },
   }
+
 end
 
+function keymaps.cmp()
+  local cmp = require("cmp")
+  local ls = require("luasnip")
+
+  return {
+    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<C-Space>"] = cmp.mapping.complete(),
+
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif ls.expand_or_jumpable() then
+        ls.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+  }
+end
 return keymaps

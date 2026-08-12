@@ -1,4 +1,4 @@
 return {
-  s("helloworld", t("Hello world!"))
+  s("helloworld", t("Hello world!")),
 }
 
