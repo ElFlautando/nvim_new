@@ -19,12 +19,17 @@ function keymaps.snacks()
   }
 end
 
+function keymaps.conform()
+  return {
+    { "<leader>fm", function() require('conform').format() end, desc = "format", mode = "n" },
+  }
+end
+
 function keymaps.lsp(client, bufnr)
   local map = function(shortkey, cmd, desc)
     vim.keymap.set("n", shortkey, cmd, { buffer = bufnr, silent = true, desc = desc })
   end
 
-  map("<leader>fm", vim.lsp.buf.format, "Format")
   map("<leader>ac", vim.lsp.buf.code_action, "Code action")
   map("<leader>gd", vim.lsp.buf.declaration, "Goto declaration")
   map("<leader>gD", vim.lsp.buf.definition, "Goto definition")
